@@ -87,7 +87,7 @@ const CardDetailPage = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="mb-8">
-        <Link to="/cards" className="text-indigo-600 hover:text-indigo-800 font-semibold">
+        <Link to="/gift-cards" className="text-indigo-600 hover:text-indigo-800 font-semibold">
           &larr; Back to All Cards
         </Link>
       </div>

@@ -4,11 +4,38 @@ CodeDrop is a full-stack web application designed for instantly purchasing digit
 
 ## Features
 
--   **Secure Authentication:** User sign-up and login handled securely via Google OAuth 2.0.
--   **Product Catalog:** Browse a catalog of available digital gift codes.
--   **Secure Payments:** Seamless and secure payment processing powered by Stripe.
--   **Instant Delivery:** Purchased codes are sent immediately to the user's registered email address.
--   **Order History:** Users can view a history of all their past purchases.
+CodeDrop provides a seamless user experience, from browsing products to receiving your gift code.
+
+### 1. Instant Gifts, Lasting Smiles
+The main landing page highlights the purpose of the application and encourages users to explore the available products.
+
+![Landing Page](./images/1.png)
+
+### 2. Product Catalog
+Users can browse a catalog of available digital gift codes. Each card includes a brief description and price.
+
+![Product Catalog](./images/2.png)
+
+### 3. Secure Payments
+Once a user selects a product, they are taken to a product page. The payment process is seamless and secure, powered by Stripe.
+
+![Product Page](./images/3.png)
+
+### 4. Instant Delivery
+After a successful purchase, a confirmation message appears, and the purchased gift code is sent immediately to the user's registered email address.
+
+![Success Message](./images/4.png)
+
+### 5. Order History
+Users can easily view a history of all their past purchases, including the products bought and the date of the transaction.
+
+![Order History](./images/5.png)
+
+### 6. Email Delivery
+The purchased codes are delivered directly to the user's inbox in a clean, easy-to-read format.
+
+![Email with Gift Code](./images/6.png)
+
 
 ## Tech Stack
 
