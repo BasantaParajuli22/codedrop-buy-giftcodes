@@ -1,0 +1,58 @@
+export const sampleProducts = [
+  {
+    name: 'Universal Choice Gift Card',
+    description: 'The perfect gift for any occasion. Let them choose from a wide variety of retailers, restaurants, and entertainment options. The card that offers endless possibilities.',
+    price: '50.00',
+    stock: 500,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakysCCjOu0BHUqIL3weP5zd8QrOMo6xX7vsnZiu',
+  },
+  {
+    name: 'Gourmet Bites Restaurant Card',
+    description: 'Treat someone to a delicious dining experience. This card is accepted at a curated selection of fine dining and casual eateries. Perfect for the foodie in your life.',
+    price: '100.00',
+    stock: 250,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakyIEpUNruO73n2SEDzkwGTHqLB9fbVmuZoha8y',
+  },
+  {
+    name: 'Digital Stream & Binge Pass',
+    description: 'Unlock a world of entertainment. This gift card can be used for subscriptions to popular streaming services for movies, music, and TV shows. The ultimate gift for any pop culture enthusiast.',
+    price: '25.00',
+    stock: 1000,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakyTYTnT4PMtUkx2Szj4Zaf7iOBulhPKp8RrAH0',
+  },
+  {
+    name: 'Retail Therapy Shopping Card',
+    description: 'A shoppers paradise in a card. Redeemable at leading fashion, electronics, and home goods stores. Give the gift of a much-needed shopping spree.',
+    price: '75.00',
+    stock: 300,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakyxFq0dJWcS5Mz41aUprsPwuTW763coqvnFCeK',
+  },
+  {
+    name: 'Coffee Lover\'s Pre-paid Card',
+    description: 'Fuel their day with the gift of great coffee. This card can be used at a variety of popular coffee chains and local cafes. A perfect pick-me-up for any coffee aficionado.',
+    price: '20.00',
+    stock: 800,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakyc4O1Wm5voD3SOBrVwQq1d6LJjy9GW8T5bnHF',
+  },
+  {
+    name: 'Gamer\'s Arcade Digital Credit',
+    description: 'Power up their gaming experience. This card adds funds to their account on popular gaming platforms, allowing them to purchase new games, downloadable content, and more.',
+    price: '60.00',
+    stock: 400,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRaky30dCyh2jyR6L52US8EtXeiIDGfszgqMTBJla',
+  },
+  {
+    name: 'Bookworm\'s Reading Voucher',
+    description: 'For the love of reading. This voucher can be exchanged for a wide selection of books, e-books, and audiobooks from major booksellers. A thoughtful gift for any avid reader.',
+    price: '30.00',
+    stock: 600,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRaky0q2ZStrN5CoFzdDOSKupsGxWyJMhaX71B3Ef',
+  },
+  {
+    name: 'Home & Decor Gift Certificate',
+    description: 'Help them create their dream space. This gift certificate is valid at a variety of home improvement and decor stores, perfect for a housewarming or renovation project.',
+    price: '150.00',
+    stock: 150,
+    imageUrl: 'https://ocohjxbhun.ufs.sh/f/tusHOP3SRakyW2iYomA9aXiHmoLTluRkfdr8yqJV5UhsF6Ej',
+  },
+];
