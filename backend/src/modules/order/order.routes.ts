@@ -5,7 +5,6 @@ import { isAuthenticated } from '../../middleware/auth.middleware';
 const router = Router();
 
 // PROTECTED ROUTES - Only logged-in users can access these
-router.post('/create-direct', isAuthenticated, orderController.handleCreateDirectOrder);
 router.get('/history', isAuthenticated, orderController.handleGetUserOrders);
 
 

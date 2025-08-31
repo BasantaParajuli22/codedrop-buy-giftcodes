@@ -39,15 +39,16 @@ export async function handleStripeWebhook(req: Request, res: Response) {
               
         //  Find a specific, available gift card code for this product.
         // This is the most important check. We are no longer just checking a stock number.
-        const availableCode = await tx.query.giftCardCodes.findFirst({
+        const availableCodes = await tx.query.giftCardCodes.findMany({
           where: and(
             eq(giftCardCodes.productId, numericProductId),
             eq(giftCardCodes.status, 'available')
           ),
+          limit: numericQuantity, //fetch required quantity
         });
 
         //If no code is found, abort immediately. The user paid for nothing.
-        if (!availableCode) {
+        if (availableCodes.length < numericQuantity) {
           throw new Error(`CRITICAL: Insufficient code inventory for product ${productId}. Payment must be refunded manually.`);
         }
 
@@ -74,18 +75,21 @@ export async function handleStripeWebhook(req: Request, res: Response) {
         });
 
         // "Claim" the code by marking it as sold and linking it to the new order.
-        await tx.update(giftCardCodes).set({
-          status: 'sold',
-          orderId: createdOrder.id,
-        }).where(eq(giftCardCodes.id, availableCode.id));
+        //there are multiple gift codes if quantity > 1 
+        for(const code of availableCodes){
+          await tx.update(giftCardCodes).set({
+            status:'sold',
+            orderId: createdOrder.id,
+          }).where(eq(giftCardCodes.id, code.id))
+        }
 
-        // STEP 6: Decrement the general stock count on the parent product.
+        //Decrement the general stock count on the parent product.
         await tx.update(products).set({
           stock: sql`${products.stock} - ${numericQuantity}` 
         }).where(eq(products.id, product.id));
 
-        // Return the encrypted code from the transaction to be used for delivery.
-        return { code: availableCode.code, productName: product.name };
+        // Return the gift  codes and product name from the transaction to be used for delivery.
+        return { code: availableCodes.map( c=> c.code ), productName: product.name };
       });
 
       console.log(`Order fulfilled in DB. Preparing to deliver code for user ${userId}.`);
@@ -93,7 +97,7 @@ export async function handleStripeWebhook(req: Request, res: Response) {
       // Deliver the code to the user via email.
       const user = await db.query.users.findFirst({ where: eq(users.id, numericUserId) });
       if (user?.email) {
-        await sendConfirmationEmail(user.email, deliveredCode.productName, deliveredCode.code);
+        await sendConfirmationEmail(user.email, deliveredCode.productName, deliveredCode.code.join(", \n") ); 
       } else {
         throw new Error(`Could not find user or user email for userId ${userId} to send confirmation.`);
       }

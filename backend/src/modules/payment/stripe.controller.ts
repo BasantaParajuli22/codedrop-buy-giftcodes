@@ -39,16 +39,52 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
             return;
         }
 
-        // The price from Drizzle's decimal type is a string, so we parse it
-        const unitAmount = Math.round(parseFloat(product.price) * 100);
+        //this is cent price 1$ = 100 cents 
+        //and could be used for 1NPR = 100 paisa when using automatic currency
+        const centPrice = 100;
 
+        // The price from Drizzle's decimal type is a string, so we parse it
+        //calculate product price 
+        const unitAmount = Math.round(parseFloat(product.price) * centPrice); 
+        
+        
+        //and then calculate fees for transaction
+        //5% per product and amt in cents 
+        const baseFee = 500; //500 cent is base fee for each transaction 
+        const feePercent = 0.05; //5% per product
+
+        //calculate total fee  //should be in cents 
+        const feePerProduct = parseFloat(product.price) * feePercent * centPrice ; 
+        const percentFeeWithoutDiscount = feePerProduct * quantity;
+
+
+        //Discount Calculation
+        let discountPercent = 0; //no discount for less than 6 quantity
+
+        if(quantity >= 6  && quantity < 12){
+            discountPercent = 0.3; //30% for 6 - 11 products
+        }else if(quantity >= 12  ){
+            discountPercent = 0.5;  //50% for 12 and above products
+        }
+      
+        //final transaction fee 
+        //Eg: 100 * (1 -0.05) // 100 * 0.95 
+        const totalFee = baseFee + Math.round(percentFeeWithoutDiscount * (1 - discountPercent)); 
+
+
+        //if u  have to deliever products 
+        //check if user has marke as to be deleivered
+        //then add delevery charge in the  line items[]
+
+
+        //create a stripe session
         const session = await stripe.checkout.sessions.create({
             mode: "payment",
             payment_method_types: ['card'],
             line_items: [
                 {
                     price_data: {
-                        currency: "usd",
+                        currency: "usd", //or "automatic" 
                         unit_amount: unitAmount, // Price in cents
 
                         product_data: {
@@ -58,6 +94,16 @@ export async function createCheckoutSession(req: Request, res: Response): Promis
                     },
                     quantity: quantity,
                 },
+                {
+                    price_data:{
+                        currency: "usd",
+                        unit_amount: totalFee,//fees 
+                        product_data:{
+                            name: "transaction fees",
+                        }
+                    },
+                    quantity: 1 //cut fees only once
+                }
             ],
             // Store what you need to fulfill the order in metadata
             metadata: {
