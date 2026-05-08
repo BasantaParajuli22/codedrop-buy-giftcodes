@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import passport from 'passport';
 import session from 'express-session';
+import { FRONTEND_BASE_URL } from '../../config/config.config';
 
-const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL || "http://localhost:5173";
 
 // Initiate Google OAuth
 //this redirects them to Google's OAuth consent screen

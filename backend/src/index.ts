@@ -6,8 +6,9 @@ import passport from 'passport';
 import './config/passport.config'; //it calls all fn of passport including passport.use()//
 import routes from './modules/index';//main routes file
 import { handleStripeWebhook } from './modules/payment/webhook.controller';
+import { FRONTEND_BASE_URL } from './config/config.config';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.SERVER_PORT || 5000;
 const app = express();
 
 //stripe webhook route
@@ -22,7 +23,7 @@ app.post(
 app.use(express.json());
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow your frontend origin
+  origin: FRONTEND_BASE_URL, // Allow your frontend origin
   credentials: true, // Allow cookies to be sent
 }));
 
@@ -49,7 +50,7 @@ async function startServer() {
   // seedProducts(); //
   try {
     app.listen (PORT, ()=>{
-      console.log(`Server running at http:///localhost:${process.env.PORT}`);
+      console.log(`Server running at http:///localhost:${PORT}`);
     } );
   } catch (error) {
     console.error(' Failed to start server: ', error);

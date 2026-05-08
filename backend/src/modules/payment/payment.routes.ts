@@ -6,7 +6,7 @@ const router = Router();
 
 router.post('/checkout/create-session', isAuthenticated, stripeController.createCheckoutSession);
 
-//webhook routes requres raw body parser//
+//webhook routes requires raw body parser//
 //no json parse is to be done for webhook 
 
 

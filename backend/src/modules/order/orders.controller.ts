@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import * as queries from '../../db/queries'; // Make sure the path to your queries is correct
-import { MyUserType } from '../../types'; // Import your custom user type
+import { MyUserType } from '../../types';
 import { db } from '../../db';
-import { orderItems, orders, products } from '../../db/schema';
+import { orders } from '../../db/schema';
 import { eq } from 'drizzle-orm';
-import { number } from 'zod';
+// import * as queries from '../../db/queries'; // Make sure the path to your queries is correct
+// import { number } from 'zod';
 
 /**
  * Fetches the complete order history for the currently logged-in user.

@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import stripe from "../../config/stripe.config";
 import * as queries from '../../db/queries';
 import { MyUserType } from '../../types'; // type for req.user
+import { FRONTEND_BASE_URL } from "../../config/config.config";
 
-const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL || "http://localhost:5173";
 
 export async function createCheckoutSession(req: Request, res: Response): Promise<void> {
     const { productId: productString, quantity: quantityString } = req.body;

@@ -1,7 +1,7 @@
 
 // This is what gets attached to req.user by Passport.
 export interface MyUserType{
-    id: number,    // The correct type for your Drizzle-ORM schema
+    id: number,
     username: string,
     googleId?: string | null, //googleId can be null in your table
     email: string,
